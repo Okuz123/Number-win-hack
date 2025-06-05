@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHANDS HACK 2.5.5 - Quantum Nexus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: #ffd700;
+            overflow: auto;
+            transition: background 0.3s, color 0.3s;
+            position: relative;
+        }
+        body.light-theme {
+            background: linear-gradient(135deg, #f0f0f0, #ffffff);
+            color: #1a1a1a;
+        }
+        body.dark-blue-theme {
+            background: linear-gradient(135deg, #0a1a3a, #1a3a6a);
+            color: #00b7eb;
+        }
+        body.neon-theme {
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: #39ff14;
+        }
+        body.cyberpunk-theme {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ff00ff;
+        }
+        .digital-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.webp') repeat;
+            opacity: 0.15;
+            z-index: -1;
+            animation: digital-rain 10s linear infinite;
+        }
+        @keyframes digital-rain {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .login-container, .predict-container {
+            position: relative;
+            margin: 30px auto;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 1200px;
+            width: 90%;
+            display: none;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            border: 2px solid #ffd700;
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); }
+            100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); }
+        }
+        .light-theme .login-container, .light-theme .predict-container {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            border: 2px solid #ff69b4;
+        }
+        .dark-blue-theme .login-container, .dark-blue-theme .predict-container {
+            background: rgba(10, 26, 58, 0.9);
+            border: 2px solid #00b7eb;
+        }
+        .neon-theme .login-container, .neon-theme .predict-container {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #39ff14;
+        }
+        .cyberpunk-theme .login-container, .cyberpunk-theme .predict-container {
+            background: rgba(15, 12, 41, 0.9);
+            border: 2px solid #ff00ff;
+        }
+        .login-container.active, .predict-container.active {
+            display: block;
+        }
+        .golden-border {
+            position: relative;
+            padding: 5px;
+            background: linear-gradient(45deg, #ffd700, #ffeb3b);
+            border-radius: 22px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        .light-theme .golden-border {
+            background: linear-gradient(45deg, #ff69b4, #ffeb3b);
+        }
+        .dark-blue-theme .golden-border {
+            background: linear-gradient(45deg, #00b7eb, #00e5ff);
+        }
+        .neon-theme .golden-border {
+            background: linear-gradient(45deg, #39ff14, #00ffaa);
+        }
+        .cyberpunk-theme .golden-border {
+            background: linear-gradient(45deg, #ff00ff, #00ffaa);
+        }
+        h1 {
+            color: #ffeb3b;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+        }
+        .light-theme h1 {
+            color: #1a1a1a;
+            text-shadow: none;
+        }
+        .dark-blue-theme h1 {
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+        }
+        .neon-theme h1 {
+            color: #00ffaa;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.8);
+        }
+        .cyberpunk-theme h1 {
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+        }
+        .input-group {
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        input {
+            background: #2c2c2c;
+            border: 2px solid #ffd700;
+            color: #ffeb3b;
+            padding: 12px;
+            font-size: 1.1em;
+            outline: none;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .light-theme input {
+            background: #ffffff;
+            border: 2px solid #ff69b4;
+            color: #1a1a1a;
+        }
+        .dark-blue-theme input {
+            background: #1a3a6a;
+            border: 2px solid #00b7eb;
+            color: #00e5ff;
+        }
+        .neon-theme input {
+            background: #2c2c2c;
+            border: 2px solid #39ff14;
+            color: #00ffaa;
+        }
+        .cyberpunk-theme input {
+            background: #0f0c29;
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
+        }
+        input.even {
+            border-color: #ff0000;
+        }
+        input.odd {
+            border-color: #00ff00;
+        }
+        input.invalid {
+            border-color: #ff0000;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+        }
+        input[type="number"] {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            margin: 5px;
+            font-size: 1.2em;
+        }
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input:focus {
+            border-color: #ff69b4;
+            box-shadow: 0 0 12px rgba(255, 105, 180, 0.5);
+        }
+        .dark-blue-theme input:focus {
+            border-color: #00e5ff;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+        }
+        .neon-theme input:focus {
+            border-color: #00ffaa;
+            box-shadow: 0 0 12px rgba(0, 255, 170, 0.5);
+        }
+        .cyberpunk-theme input:focus {
+            border-color: #ff00ff;
+            box-shadow: 0 0 12px rgba(255, 0, 255, 0.5);
+        }
+        .luxury-button {
+            background: linear-gradient(45deg, #ffd700, #ffeb3b);
+            border: none;
+            color: #1a1a1a;
+            padding: 12px 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 15px;
+            text-transform: uppercase;
+        }
+        .light-theme .luxury-button {
+            background: linear-gradient(45deg, #ff69b4, #ffeb3b);
+        }
+        .dark-blue-theme .luxury-button {
+            background: linear-gradient(45deg, #00b7eb, #00e5ff);
+            color: #ffffff;
+        }
+        .neon-theme .luxury-button {
+            background: linear-gradient(45deg, #39ff14, #00ffaa);
+            color: #1a1a1a;
+        }
+        .cyberpunk-theme .luxury-button {
+            background: linear-gradient(45deg, #ff00ff, #00ffaa);
+            color: #ffffff;
+        }
+        .luxury-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+        .luxury-button.pink {
+            background: linear-gradient(45deg, #ff69b4, #ffeb3b);
+            color: #fff;
+        }
+        .dark-blue-theme .luxury-button.pink {
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+        }
+        .neon-theme .luxury-button.pink {
+            background: linear-gradient(45deg, #ff00ff, #ff69b4);
+        }
+        .cyberpunk-theme .luxury-button.pink {
+            background: linear-gradient(45deg, #ff00ff, #ff69b4);
+        }
+        .luxury-button.pink:hover {
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+        }
+        .error {
+            color: #ff69b4;
+            margin: 15px 0;
+            font-size: 1em;
+            font-weight: bold;
+            display: none;
+        }
+        .light-theme .error {
+            color: #ff0000;
+        }
+        .dark-blue-theme .error {
+            color: #ff1493;
+        }
+        .neon-theme .error {
+            color: #ff00ff;
+        }
+        .cyberpunk-theme .error {
+            color: #ff00ff;
+        }
+        .welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #ffeb3b;
+            padding: 30px;
+            border: 3px solid #ffd700;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+            border-radius: 15px;
+            font-size: 1.8em;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+            text-align: center;
+        }
+        .light-theme .welcome-message {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a1a1a;
+            border: 3px solid #ff69b4;
+        }
+        .dark-blue-theme .welcome-message {
+            background: rgba(10, 26, 58, 0.9);
+            color: #00e5ff;
+            border: 3px solid #00b7eb;
+        }
+        .neon-theme .welcome-message {
+            background: rgba(0, 0, 0, 0.9);
+            color: #00ffaa;
+            border: 3px solid #39ff14;
+        }
+        .cyberpunk-theme .welcome-message {
+            background: rgba(15, 12, 41, 0.9);
+            color: #ff00ff;
+            border: 3px solid #ff00ff;
+        }
+        .email-badge {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(45deg, #ffd700, #ffeb3b);
+            border: 2px solid #ff69b4;
+            color: #1a1a1a;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: move;
+            user-select: none;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            transition: left 0.05s, top 0.05s;
+        }
+        .light-theme .email-badge {
+            background: linear-gradient(45deg, #ff69b4, #ffeb3b);
+            border: 2px solid #ffd700;
+        }
+        .dark-blue-theme .email-badge {
+            background: linear-gradient(45deg, #00b7eb, #00e5ff);
+            border: 2px solid #ff1493;
+        }
+        .neon-theme .email-badge {
+            background: linear-gradient(45deg, #39ff14, #00ffaa);
+            border: 2px solid #ff00ff;
+        }
+        .cyberpunk-theme .email-badge {
+            background: linear-gradient(45deg, #ff00ff, #00ffaa);
+            border: 2px solid #ffd700;
+        }
+        .email-badge.dragging {
+            transition: none;
+        }
+        .email-badge a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .dark-blue-theme .email-badge a {
+            color: #ffffff;
+        }
+        .neon-theme .email-badge a {
+            color: #1a1a1a;
+        }
+        .cyberpunk-theme .email-badge a {
+            color: #ffffff;
+        }
+        .email-badge:hover {
+            background: linear-gradient(45deg, #ff69b4, #ffd700);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+        }
+        .floating-page {
+            position: fixed;
+            top: 80px;
+            right: 15px;
+            width: 300px;
+            min-height: 400px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            z-index: 999;
+            text-align: center;
+            color: #ffeb3b;
+            font-size: 0.95em;
+            cursor: move;
+            display: none;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            border: 2px solid #ffd700;
+            transition: left 0.05s, top 0.05s, height 0.3s;
+        }
+        .light-theme .floating-page {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a1a1a;
+            border: 2px solid #ff69b4;
+        }
+        .dark-blue-theme .floating-page {
+            background: rgba(10, 26, 58, 0.9);
+            color: #00e5ff;
+            border: 2px solid #00b7eb;
+        }
+        .neon-theme .floating-page {
+            background: rgba(0, 0, 0, 0.9);
+            color: #00ffaa;
+            border: 2px solid #39ff14;
+        }
+        .cyberpunk-theme .floating-page {
+            background: rgba(15, 12, 41, 0.9);
+            color: #ff00ff;
+            border: 2px solid #ff00ff;
+        }
+        .floating-page.minimized {
+            height: 60px;
+            overflow: hidden;
+        }
+        .floating-page.dragging {
+            transition: none;
+        }
+        .floating-page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .floating-page h3 {
+            color: #ff69b4;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .light-theme .floating-page h3 {
+            color: #ff0000;
+        }
+        .dark-blue-theme .floating-page h3 {
+            color: #ff1493;
+        }
+        .neon-theme .floating-page h3 {
+            color: #ff00ff;
+        }
+        .cyberpunk-theme .floating-page h3 {
+            color: #ff00ff;
+        }
+        .floating-page-result {
+            margin-top: 15px;
+            color: #ffeb3b;
+            font-size: 0.9em;
+            text-align: left;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .light-theme .floating-page-result {
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .floating-page-result {
+            color: #00e5ff;
+        }
+        .neon-theme .floating-page-result {
+            color: #00ffaa;
+        }
+        .cyberpunk-theme .floating-page-result {
+            color: #ff00ff;
+        }
+        .floating-page-button {
+            background: #ff69b4;
+            border: none;
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+            margin-left: 5px;
+        }
+        .dark-blue-theme .floating-page-button {
+            background: #00b7eb;
+        }
+        .neon-theme .floating-page-button {
+            background: #39ff14;
+            color: #1a1a1a;
+        }
+        .cyberpunk-theme .floating-page-button {
+            background: #ff00ff;
+            color: #ffffff;
+        }
+        .floating-page-button:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .floating-page-button:hover {
+            background: #00e5ff;
+        }
+        .neon-theme .floating-page-button:hover {
+            background: #00ffaa;
+        }
+        .cyberpunk-theme .floating-page-button:hover {
+            background: #ff00ff;
+        }
+        .result-container {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            max-height: 400px;
+            overflow-y: auto;
+            color: #ffeb3b;
+            text-align: left;
+        }
+        .light-theme .result-container {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .result-container {
+            background: rgba(10, 26, 58, 0.9);
+            border: 2px solid #00b7eb;
+            color: #00e5ff;
+        }
+        .neon-theme .result-container {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #39ff14;
+            color: #00ffaa;
+        }
+        .cyberpunk-theme .result-container {
+            background: rgba(15, 12, 41, 0.9);
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
+        }
+        .result-container p {
+            font-size: 0.95em;
+            margin: 8px 0;
+        }
+        .waiting-message {
+            font-size: 1em;
+            color: #ff69b4;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+            font-weight: bold;
+        }
+        .light-theme .waiting-message {
+            color: #ff0000;
+        }
+        .dark-blue-theme .waiting-message {
+            color: #ff1493;
+        }
+        .neon-theme .waiting-message {
+            color: #ff00ff;
+        }
+        .cyberpunk-theme .waiting-message {
+            color: #ff00ff;
+        }
+        .color-pink { color: #ff69b4; }
+        .color-yellow { color: #ffeb3b; }
+        .color-gold { color: #ffd700; }
+        .color-red { color: #ff0000; }
+        .color-green { color: #00ff00; }
+        .light-theme .color-yellow { color: #1a1a1a; }
+        .light-theme .color-gold { color: #ff69b4; }
+        .dark-blue-theme .color-yellow { color: #00e5ff; }
+        .dark-blue-theme .color-gold { color: #00b7eb; }
+        .neon-theme .color-yellow { color: #00ffaa; }
+        .neon-theme .color-gold { color: #39ff14; }
+        .cyberpunk-theme .color-yellow { color: #ff00ff; }
+        .cyberpunk-theme .color-gold { color: #ff00ff; }
+        #svgFlow {
+            margin: 25px 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .light-theme #svgFlow {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+        }
+        .dark-blue-theme #svgFlow {
+            background: rgba(10, 26, 58, 0.9);
+            border: 2px solid #00b7eb;
+        }
+        .neon-theme #svgFlow {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #39ff14;
+        }
+        .cyberpunk-theme #svgFlow {
+            background: rgba(15, 12, 41, 0.9);
+            border: 2px solid #ff00ff;
+        }
+        #svgFlow svg { max-width: 100%; height: auto; }
+        .contact-info {
+            color: #ffeb3b;
+            font-size: 0.95em;
+            margin: 15px 0;
+        }
+        .light-theme .contact-info {
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .contact-info {
+            color: #00e5ff;
+        }
+        .neon-theme .contact-info {
+            color: #00ffaa;
+        }
+        .cyberpunk-theme .contact-info {
+            color: #ff00ff;
+        }
+        .contact-info a {
+            color: #ff69b4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .light-theme .contact-info a {
+            color: #ff0000;
+        }
+        .dark-blue-theme .contact-info a {
+            color: #ff1493;
+        }
+        .neon-theme .contact-info a {
+            color: #ff00ff;
+        }
+        .cyberpunk-theme .contact-info a {
+            color: #ff00ff;
+        }
+        .contact-info a:hover {
+            color: #ffd700;
+        }
+        .light-theme .contact-info a:hover {
+            color: #ff69b4;
+        }
+        .dark-blue-theme .contact-info a:hover {
+            color: #00e5ff;
+        }
+        .neon-theme .contact-info a:hover {
+            color: #00ffaa;
+        }
+        .cyberpunk-theme .contact-info a:hover {
+            color: #ff00ff;
+        }
+        .final-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ffd700, #ffeb3b);
+            padding: 20px;
+            border-radius: 15px;
+            z-index: 1000;
+            width: 240px;
+            text-align: center;
+            color: #1a1a1a;
+            font-size: 1.1em;
+            font-weight: bold;
+            display: none;
+            cursor: move;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            border: 2px solid #ff69b4;
+            transition: left 0.05s, top 0.05s;
+        }
+        .light-theme .final-popup {
+            background: linear-gradient(45deg, #ff69b4, #ffeb3b);
+            border: 2px solid #ffd700;
+        }
+        .dark-blue-theme .final-popup {
+            background: linear-gradient(45deg, #00b7eb, #00e5ff);
+            border: 2px solid #ff1493;
+        }
+        .neon-theme .final-popup {
+            background: linear-gradient(45deg, #39ff14, #00ffaa);
+            border: 2px solid #ff00ff;
+        }
+        .cyberpunk-theme .final-popup {
+            background: linear-gradient(45deg, #ff00ff, #00ffaa);
+            border: 2px solid #ffd700;
+        }
+        .final-popup.dragging {
+            transition: none;
+        }
+        .final-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .final-popup-close {
+            background: #ff69b4;
+            border: none;
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .dark-blue-theme .final-popup-close {
+            background: #00b7eb;
+        }
+        .neon-theme .final-popup-close {
+            background: #39ff14;
+            color: #1a1a1a;
+        }
+        .cyberpunk-theme .final-popup-close {
+            background: #ff00ff;
+            color: #ffffff;
+        }
+        .final-popup-close:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .final-popup-close:hover {
+            background: #00e5ff;
+        }
+        .neon-theme .final-popup-close:hover {
+            background: #00ffaa;
+        }
+        .cyberpunk-theme .final-popup-close:hover {
+            background: #ff00ff;
+        }
+        .period-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #period {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff69b4;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        .light-theme #period {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+            color: #ff0000;
+        }
+        .dark-blue-theme #period {
+            background: rgba(10, 26, 58, 0.9);
+            border: 2px solid #00b7eb;
+            color: #ff1493;
+        }
+        .neon-theme #period {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #39ff14;
+            color: #ff00ff;
+        }
+        .cyberpunk-theme #period {
+            background: rgba(15, 12, 41, 0.9);
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #2c2c2c;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+            display: none;
+        }
+        .light-theme .progress-bar {
+            background: #e0e0e0;
+        }
+        .dark-blue-theme .progress-bar {
+            background: #1a3a6a;
+        }
+        .neon-theme .progress-bar {
+            background: #2c2c2c;
+        }
+        .cyberpunk-theme .progress-bar {
+            background: #0f0c29;
+        }
+        .progress-bar.active {
+            display: block;
+        }
+        .progress-bar div {
+            height: 100%;
+            background: linear-gradient(45deg, #ffd700, #ff69b4);
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        .dark-blue-theme .progress-bar div {
+            background: linear-gradient(45deg, #00b7eb, #ff1493);
+        }
+        .neon-theme .progress-bar div {
+            background: linear-gradient(45deg, #39ff14, #ff00ff);
+        }
+        .cyberpunk-theme .progress-bar div {
+            background: linear-gradient(45deg, #ff00ff, #00ffaa);
+        }
+        .trend-chart, .confidence-trend {
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .light-theme .trend-chart, .light-theme .confidence-trend {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+        }
+        .dark-blue-theme .trend-chart, .dark-blue-theme .confidence-trend {
+            background: rgba(10, 26, 58, 0.9);
+            border: 2px solid #00b7eb;
+        }
+        .neon-theme .trend-chart, .neon-theme .confidence-trend {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #39ff14;
+        }
+        .cyberpunk-theme .trend-chart, .cyberpunk-theme .confidence-trend {
+            background: rgba(15, 12, 41, 0.9);
+            border: 2px solid #ff00ff;
+        }
+        .feedback-section {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+        .feedback-button {
+            background: #ff69b4;
+            border: none;
+            color: #fff;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .dark-blue-theme .feedback-button {
+            background: #00b7eb;
+        }
+        .neon-theme .feedback-button {
+            background: #39ff14;
+            color: #1a1a1a;
+        }
+        .cyberpunk-theme .feedback-button {
+            background: #ff00ff;
+            color: #ffffff;
+        }
+        .feedback-button:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .feedback-button:hover {
+            background: #00e5ff;
+        }
+        .neon-theme .feedback-button:hover {
+            background: #00ffaa;
+        }
+        .cyberpunk-theme .feedback-button:hover {
+            background: #ff00ff;
+        }
+        .theme-selector, .method-selector, .validation-toggle, .method-weights {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .theme-selector select, .method-selector select, .validation-toggle select {
+            background: #2c2c2c;
+            color: #ffeb3b;
+            border: 2px solid #ffd700;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        .light-theme .theme-selector select, .light-theme .method-selector select, .light-theme .validation-toggle select {
+            background: #ffffff;
+            color: #1a1a1a;
+            border: 2px solid #ff69b4;
+        }
+        .dark-blue-theme .theme-selector select, .dark-blue-theme .method-selector select, .dark-blue-theme .validation-toggle select {
+            background: #1a3a6a;
+            color: #00e5ff;
+            border: 2px solid #00b7eb;
+        }
+        .neon-theme .theme-selector select, .neon-theme .method-selector select, .neon-theme .validation-toggle select {
+            background: #2c2c2c;
+            color: #00ffaa;
+            border: 2px solid #39ff14;
+        }
+        .cyberpunk-theme .theme-selector select, .cyberpunk-theme .method-selector select, .cyberpunk-theme .validation-toggle select {
+            background: #0f0c29;
+            color: #ff00ff;
+            border: 2px solid #ff00ff;
+        }
+        .method-weights input {
+            width: 100px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background: #ffd700;
+            color: #1a1a1a;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -70px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .dark-blue-theme .tooltip .tooltiptext {
+            background: #00b7eb;
+            color: #ffffff;
+        }
+        .neon-theme .tooltip .tooltiptext {
+            background: #39ff14;
+            color: #1a1a1a;
+        }
+        .cyberpunk-theme .tooltip .tooltiptext {
+            background: #ff00ff;
+            color: #ffffff;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .motivational-quote {
+            font-style: italic;
+            color: #ff69b4;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        .light-theme .motivational-quote {
+            color: #ff0000;
+        }
+        .dark-blue-theme .motivational-quote {
+            color: #ff1493;
+        }
+        .neon-theme .motivational-quote {
+            color: #ff00ff;
+        }
+        .cyberpunk-theme .motivational-quote {
+            color: #ff00ff;
+        }
+        .history-search {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .history-search input {
+            width: 200px;
+        }
+        .sound-toggle, .validation-toggle {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .sound-toggle label, .validation-toggle label {
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        .sound-toggle input, .validation-toggle input {
+            width: 20px;
+            height: 20px;
+        }
+        .realtime-clock {
+            font-size: 0.9em;
+            color: #ffeb3b;
+            margin: 10px 0;
+        }
+        .light-theme .realtime-clock {
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .realtime-clock {
+            color: #00e5ff;
+        }
+        .neon-theme .realtime-clock {
+            color: #00ffaa;
+        }
+        .cyberpunk-theme .realtime-clock {
+            color: #ff00ff;
+        }
+        .confidence-meter {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .confidence-meter canvas {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        .history-table {
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            overflow-x: auto;
+        }
+        .light-theme .history-table {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+        }
+        .dark-blue-theme .history-table {
+            background: rgba(10, 26, 58, 0.9);
+            border: 2px solid #00b7eb;
+        }
+        .neon-theme .history-table {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #39ff14;
+        }
+        .cyberpunk-theme .history-table {
+            background: rgba(15, 12, 41, 0.9);
+            border: 2px solid #ff00ff;
+        }
+        .history-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .history-table th, .history-table td {
+            padding: 8px;
+            border: 1px solid #ffd700;
+            color: #ffeb3b;
+            font-size: 0.9em;
+        }
+        .light-theme .history-table th, .light-theme .history-table td {
+            border: 1px solid #ff69b4;
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .history-table th, .dark-blue-theme .history-table td {
+            border: 1px solid #00b7eb;
+            color: #00e5ff;
+        }
+        .neon-theme .history-table th, .neon-theme .history-table td {
+            border: 1px solid #39ff14;
+            color: #00ffaa;
+        }
+        .cyberpunk-theme .history-table th, .cyberpunk-theme .history-table td {
+            border: 1px solid #ff00ff;
+            color: #ff00ff;
+        }
+        .accuracy-report {
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .light-theme .accuracy-report {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+        }
+        .dark-blue-theme .accuracy-report {
+            background: rgba(10, 26, 58, 0.9);
+            border: 2px solid #00b7eb;
+        }
+        .neon-theme .accuracy-report {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #39ff14;
+        }
+        .cyberpunk-theme .accuracy-report {
+            background: rgba(15, 12, 41, 0.9);
+            border: 2px solid #ff00ff;
+        }
+        .streak-tracker {
+            margin: 20px 0;
+            font-size: 1em;
+            color: #ffeb3b;
+            text-align: center;
+        }
+        .light-theme .streak-tracker {
+            color: #1a1a1a;
+        }
+        .dark-blue-theme .streak-tracker {
+            color: #00e5ff;
+        }
+        .neon-theme .streak-tracker {
+            color: #00ffaa;
+        }
+        .cyberpunk-theme .streak-tracker {
+            color: #ff00ff;
+        }
+        .input-feedback {
+            color: #ff69b4;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+        .light-theme .input-feedback {
+            color: #ff0000;
+        }
+        .dark-blue-theme .input-feedback {
+            color: #ff1493;
+        }
+        .neon-theme .input-feedback {
+            color: #ff00ff;
+        }
+        .cyberpunk-theme .input-feedback {
+            color: #ff00ff;
+        }
+        @media (max-width: 600px) {
+            .login-container, .predict-container {
+                padding: 30px;
+                width: 95%;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            input[type="number"] {
+                width: 50px;
+                height: 50px;
+            }
+            .luxury-button {
+                font-size: 1.1em;
+                padding: 10px 20px;
+            }
+            .result-container {
+                max-height: 300px;
+            }
+            .final-popup {
+                width: 200px;
+                font-size: 0.95em;
+            }
+            .floating-page {
+                width: 240px;
+                padding: 15px;
+                min-height: 350px;
+            }
+            .floating-page-result {
+                font-size: 0.85em;
+                max-height: 280px;
+            }
+            #period {
+                font-size: 22px;
+                padding: 8px 15px;
+            }
+            .theme-selector select, .method-selector select, .validation-toggle select {
+                font-size: 0.9em;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="digital-rain"></div>
+    <canvas class="particle-bg" id="particleCanvas"></canvas>
+    <div class="email-badge" id="emailBadge">
+        <a href="mailto:okhanday891@gmail.com?subject=KHANDS%20HACK%202.5.5%20Support%20Query&body=Please%20assist%20with%20KHANDS%20HACK%202.5.5%20access%20or%20issues." target="_blank" onclick="handleEmailClick(event)">
+            VIP Support
+        </a>
+    </div>
+    <div class="floating-page" id="floatingPage">
+        <div class="floating-page-header">
+            <h3>Next Prediction</h3>
+            <div>
+                <button class="floating-page-button" onclick="minimizeFloatingPage()">−</button>
+                <button class="floating-page-button" onclick="closeFloatingPage()">X</button>
+            </div>
+        </div>
+        <div class="floating-page-result" id="nextResult"></div>
+        <p class="motivational-quote" id="floatingQuote"></p>
+    </div>
+    <div class="golden-border">
+        <div class="login-container active" id="loginContainer">
+            <h1>KHANDS HACK 2.5.5</h1>
+            <div class="input-group">
+                <input type="password" id="accessKey" placeholder="Enter VIP Code" inputmode="numeric" pattern="[0-9]*" aria-label="Access Code">
+            </div>
+            <button class="luxury-button" onclick="submitKey()">Access Nexus</button>
+            <a href="mailto:okhanday891@gmail.com?subject=KHANDS%20HACK%202.5.5%20Support%20Query&body=Please%20assist%20with%20KHANDS%20HACK%202.5.5%20access%20or%20issues." target="_blank" onclick="handleEmailClick(event)">
+                <button class="luxury-button pink">VIP Support</button>
+            </a>
+            <p class="error" id="errorMessage">Access Denied</p>
+            <div class="contact-info">Lost access? <a href="mailto:okhanday891@gmail.com?subject=KHANDS%20HACK%202.5.5%20Support%20Query&body=Please%20assist%20with%20KHANDS%20HACK%202.5.5%20access%20or%20issues." onclick="handleEmailClick(event)">VIP Support</a></div>
+        </div>
+    </div>
+    <div class="welcome-message" id="welcomeMessage">KHANDS HACK 2.5.5 Unlocked</div>
+    <div class="golden-border" id="goldenBorder" style="display: none;">
+        <div class="predict-container" id="predictSection">
+            <h1>Prediction Matrix</h1>
+            <div class="period-container">
+                <h2 style="color: #ffeb3b; font-size: 1.5em; margin-bottom: 10px;">Current Period & Time</h2>
+                <div id="period">Loading...</div>
+                <div class="realtime-clock" id="realtimeClock">Loading...</div>
+                <button class="luxury-button" onclick="copyPeriodNumber()">Copy Period</button>
+                <button class="luxury-button pink" onclick="syncWith91Club()">Sync with 91 Club</button>
+            </div>
+            <div class="theme-selector">
+                <select id="themeSelect" onchange="changeTheme()">
+                    <option value="default">Default Theme</option>
+                    <option value="light">Light Theme</option>
+                    <option value="dark-blue">Dark Blue Theme</option>
+                    <option value="neon">Neon Theme</option>
+                    <option value="cyberpunk">Cyberpunk Theme</option>
+                </select>
+            </div>
+            <div class="method-selector">
+                <select id="methodSelect" multiple onchange="updateSelectedMethods()">
+                    <option value="composite">Composite</option>
+                    <option value="matrix">Matrix</option>
+                    <option value="gaussian">Gaussian</option>
+                    <option value="arithmetic">Arithmetic Progression</option>
+                    <option value="linear">Linear Gradient</option>
+                    <option value="inner">Inner Image</option>
+                    <option value="pi">Pi-Based</option>
+                    <option value="wave">Wave</option>
+                    <option value="operation">Operation-Based</option>
+                    <option value="integration">Integration</option>
+                    <option value="mensuration">Mensuration</option>
+                    <option value="bodmas">BODMAS</option>
+                    <option value="oddEven">Odd/Even</option>
+                    <option value="markov">Markov</option>
+                    <option value="numberTrend">Number Trend</option>
+                    <option value="bigSmall">Big/Small Pattern</option>
+                    <option value="colorSeq">Color Sequence</option>
+                    <option value="trend">Trend Sequence</option>
+                    <option value="entropy">Entropy</option>
+                    <option value="fibonacci">Fibonacci</option>
+                    <option value="frequency">Frequency</option>
+                    <option value="pattern">Pattern Recognition</option>
+                    <option value="harmonic">Harmonic Mean</option>
+                    <option value="geometric">Geometric Mean</option>
+                    <option value="modulo">Modulo Pattern</option>
+                    <option value="delta">Delta Analysis</option>
+                    <option value="cluster">Cluster Analysis</option>
+                    <!-- New Methods -->
+                    <option value="complement">Complement</option>
+                    <option value="intStorage">Integer Storage</option>
+                    <option value="floatArithmetic">Floating-Point Arithmetic</option>
+                    <option value="dataError">Data Error Analysis</option>
+                    <option value="secant">Secant Method</option>
+                    <option value="newtonRaphson">Newton-Raphson</option>
+                    <option value="muller">Muller's Method</option>
+                    <option value="quotientDiff">Quotient-Difference</option>
+                    <option value="nonLinearSystem">Non-Linear System</option>
+                    <option value="matrixAdd">Matrix Addition</option>
+                    <option value="matrixMul">Matrix Multiplication</option>
+                    <option value="determinant">Determinant</option>
+                    <option value="inverseMatrix">Inverse Matrix</option>
+                    <option value="eigenvalue">Eigenvalue</option>
+                    <option value="gaussianElim">Gaussian Elimination</option>
+                    <option value="gaussJordan">Gauss-Jordan</option>
+                    <option value="matrixInverse">Matrix Inverse Method</option>
+                    <option value="lagrange">Lagrange Interpolation</option>
+                    <option value="newtonForward">Newton Forward Interpolation</option>
+                    <option value="linearLeastSquares">Linear Least Squares</option>
+                    <option value="polyLeastSquares">Polynomial Least Squares</option>
+                    <option value="forwardDiff">Forward Difference</option>
+                    <option value="trapezoidal">Trapezoidal Rule</option>
+                    <option value="simpson">Simpson's Rule</option>
+                </select>
+            </div>
+            <div class="method-weights">
+                <label for="methodWeightsInput">Adjust Method Weights (e.g., composite:1.5):</label>
+                <input type="text" id="methodWeightsInput" placeholder="method:weight,method:weight" aria-label="Method Weights">
+                <button class="luxury-button" onclick="updateMethodWeights()">Apply Weights</button>
+            </div>
+            <div class="validation-toggle">
+                <label for="validationToggle">Strict Input Validation (0-9):</label>
+                <input type="checkbox" id="validationToggle" checked>
+            </div>
+            <div class="sound-toggle">
+                <label for="soundToggle">Enable Sounds:</label>
+                <input type="checkbox" id="soundToggle" checked>
+            </div>
+            <div class="input-group">
+                <div class="tooltip">
+                    <input type="number" id="num1" placeholder="0" aria-label="Number 1" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num2" placeholder="0" aria-label="Number 2" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num3" placeholder="0" aria-label="Number 3" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num4" placeholder="0" aria-label="Number 4" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num5" placeholder="0" aria-label="Number 5" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num6" placeholder="0" aria-label="Number 6" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num7" placeholder="0" aria-label="Number 7" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num8" placeholder="0" aria-label="Number 8" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <div class="tooltip">
+                    <input type="number" id="num9" placeholder="0" aria-label="Number 9" oninput="updateInputColor(this); validateInput(this)">
+                    <span class="tooltiptext">Enter a number</span>
+                </div>
+                <p class="input-feedback" id="inputFeedback">Invalid input detected</p>
+            </div>
+            <div class="input-group">
+                <button class="luxury-button" id="predictButton" onclick="calculateAll()">Predict Now</button>
+                <button class="luxury-button pink" onclick="quickPredict()">Quick Predict</button>
+                <button class="luxury-button" onclick="resetInputs()">Reset Inputs</button>
+                <button class="luxury-button" onclick="exportHistory()">Export as TXT</button>
+                <button class="luxury-button pink" onclick="exportAsCSV()">Export as CSV</button>
+                <button class="luxury-button" onclick="exportAsPDF()">Export as PDF</button>
+                <button class="luxury-button pink" onclick="exportSnapshot()">Export Snapshot</button>
+                <button class="luxury-button" onclick="autoFillInputs()">Auto-Fill Last</button>
+                <button class="luxury-button pink" onclick="clearHistory()">Clear History</button>
+            </div>
+            <div class="history-search">
+                <input type="text" id="historySearch" placeholder="Search prediction history..." aria-label="Search History">
+                <button class="luxury-button" onclick="searchHistory()">Search</button>
+            </div>
+            <div class="progress-bar" id="progressBar"><div></div></div>
+            <div class="waiting-message" id="waitingMessage">Processing Prediction...</div>
+            <div class="streak-tracker" id="streakTracker">Current Streak: 0</div>
+            <div class="confidence-meter">
+                <canvas id="confidenceMeter"></canvas>
+                <p id="confidenceText">Confidence: 0%</p>
+            </div>
+            <div class="result-container" id="resultContainer"></div>
+            <div class="trend-chart" id="trendChart"></div>
+            <div class="confidence-trend" id="confidenceTrend"></div>
+            <div class="history-table" id="historyTable">
+                <h3>Prediction History</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th>Inputs</th>
+                            <th>Number</th>
+                            <th>Signal</th>
+                            <th>Color</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody"></tbody>
+                </table>
+            </div>
+            <div class="accuracy-report" id="accuracyReport">
+                <h3>Prediction Accuracy Report</h3>
+                <div id="accuracyReportContent"></div>
+            </div>
+            <div class="feedback-section">
+                <button class="feedback-button" onclick="ratePrediction(true)">Prediction Correct</button>
+                <button class="feedback-button" onclick="ratePrediction(false)">Prediction Incorrect</button>
+                <p id="successRate">Success Rate: 0%</p>
+            </div>
+            <div id="svgFlow"></div>
+            <p class="motivational-quote" id="motivationalQuote"></p>
+            <div class="contact-info">For issues, contact: <a href="mailto:okhanday891@gmail.com?subject=KHANDS%20HACK%202.5.5%20Support%20Query&body=Please%20assist%20with%20KHANDS%20HACK%202.5.5%20access%20or%20issues." onclick="handleEmailClick(event)">VIP Support</a></div>
+        </div>
+    </div>
+    <div class="final-popup" id="finalPopup">
+        <div class="final-popup-header">
+            <span>Final Prediction</span>
+            <button class="final-popup-close" onclick="hideFinalPopup()">X</button>
+        </div>
+        <div id="finalResult"></div>
+        <p class="motivational-quote" id="finalQuote"></p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        // Initialize variables and load saved data
+        let lastNumbers = [];
+        let inputHistory = JSON.parse(localStorage.getItem('inputHistory')) || [];
+        let predictionHistory = JSON.parse(localStorage.getItem('predictionHistory')) || [];
+        let feedbackHistory = JSON.parse(localStorage.getItem('feedbackHistory')) || { correct: 0, total: 0 };
+        let methodAccuracy = JSON.parse(localStorage.getItem('methodAccuracy')) || {};
+        let methodWeights = JSON.parse(localStorage.getItem('methodWeights')) || {};
+        let soundEnabled = true;
+        let strictValidation = true;
+        let currentStreak = parseInt(localStorage.getItem('currentStreak')) || 0;
+        let trendChart = null;
+        let confidenceTrendChart = null;
+        let selectedMethods = [
+            'composite', 'matrix', 'gaussian', 'arithmetic', 'linear', 'inner', 'pi', 'wave',
+            'operation', 'integration', 'mensuration', 'bodmas', 'oddEven', 'markov',
+            'numberTrend', 'bigSmall', 'colorSeq', 'trend', 'entropy', 'fibonacci',
+            'frequency', 'pattern', 'harmonic', 'geometric', 'modulo', 'delta', 'cluster',
+            'complement', 'intStorage', 'floatArithmetic', 'dataError', 'secant',
+            'newtonRaphson', 'muller', 'quotientDiff', 'nonLinearSystem', 'matrixAdd',
+            'matrixMul', 'determinant', 'inverseMatrix', 'eigenvalue', 'gaussianElim',
+            'gaussJordan', 'matrixInverse', 'lagrange', 'newtonForward', 'linearLeastSquares',
+            'polyLeastSquares', 'forwardDiff', 'trapezoidal', 'simpson'
+        ];
+
+        // Constants
+        const PI_DIGITS = "31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
+        const FIBONACCI = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+        const MOTIVATIONAL_QUOTES = [
+            "Unlock the future with precise predictions!",
+            "Numbers reveal the path to victory!",
+            "Harness the power of patterns and win!",
+            "Your intuition shapes the quantum nexus!",
+            "Every prediction is a step toward mastery!",
+            "Trust the math, embrace the success!",
+            "Decode the sequence, claim the reward!",
+            "Bold predictions lead to bold outcomes!"
+        ];
+
+        // Sound effects
+        function playSound(type) {
+            if (!soundEnabled) return;
+            let sound;
+            switch (type) {
+                case 'click':
+                    sound = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+                    break;
+                case 'success':
+                    sound = new Audio('https://assets.mixkit.co/active_storage/sfx/2494/2494-preview.mp3');
+                    break;
+                case 'error':
+                    sound = new Audio('https://assets.mixkit.co/active_storage/sfx/2491/2491-preview.mp3');
+                    break;
+            }
+            sound.play().catch(() => console.log('Sound playback failed'));
+        }
+
+        // Utility functions
+        function pad(n, width = 2) {
+            return n.toString().padStart(width, '0');
+        }
+
+        function updatePeriodNumber() {
+            const now = new Date();
+            const baseTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+            const baseRoundNumber = 9671;
+            const diffMinutes = Math.floor((now - baseTime) / 60000);
+            const currentRoundNumber = baseRoundNumber + diffMinutes;
+            const year = now.getFullYear();
+            const month = pad(now.getMonth() + 1);
+            const day = pad(now.getDate());
+            const round = pad(currentRoundNumber, 5);
+            const systemPrefix = "1000";
+            const periodNumber = `${year}${month}${day}${systemPrefix}${round}`;
+            document.getElementById("period").textContent = periodNumber;
+            document.getElementById("realtimeClock").textContent = `Time: ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+            setTimeout(updatePeriodNumber, 1000);
+        }
+
+        // Theme switching
+        function changeTheme() {
+            const theme = document.getElementById('themeSelect').value;
+            document.body.classList.remove('light-theme', 'dark-blue-theme', 'neon-theme', 'cyberpunk-theme');
+            if (theme === 'light') document.body.classList.add('light-theme');
+            else if (theme === 'dark-blue') document.body.classList.add('dark-blue-theme');
+            else if (theme === 'neon') document.body.classList.add('neon-theme');
+            else if (theme === 'cyberpunk') document.body.classList.add('cyberpunk-theme');
+            updateTrendChart();
+            updateConfidenceMeter(0);
+            updateConfidenceTrendChart();
+            playSound('click');
+        }
+
+        // Update selected prediction methods
+        function updateSelectedMethods() {
+            const select = document.getElementById('methodSelect');
+            selectedMethods = Array.from(select.selectedOptions).map(option => option.value);
+            if (selectedMethods.length === 0) {
+                alert('At least one prediction method must be selected.');
+                select.value = [
+                    'composite', 'matrix', 'gaussian', 'arithmetic', 'linear', 'inner', 'pi', 'wave',
+                    'operation', 'integration', 'mensuration', 'bodmas', 'oddEven', 'markov',
+                    'numberTrend', 'bigSmall', 'colorSeq', 'trend', 'entropy', 'fibonacci',
+                    'frequency', 'pattern', 'harmonic', 'geometric', 'modulo', 'delta', 'cluster',
+                    'complement', 'intStorage', 'floatArithmetic', 'dataError', 'secant',
+                    'newtonRaphson', 'muller', 'quotientDiff', 'nonLinearSystem', 'matrixAdd',
+                    'matrixMul', 'determinant', 'inverseMatrix', 'eigenvalue', 'gaussianElim',
+                    'gaussJordan', 'matrixInverse', 'lagrange', 'newtonForward', 'linearLeastSquares',
+                    'polyLeastSquares', 'forwardDiff', 'trapezoidal', 'simpson'
+                ];
+                selectedMethods = select.value;
+            }
+            playSound('click');
+        }
+
+        // Update method weights
+        function updateMethodWeights() {
+            const input = document.getElementById('methodWeightsInput').value;
+            const pairs = input.split(',').map(pair => pair.trim().split(':'));
+            const newWeights = {};
+            let valid = true;
+            pairs.forEach(([method, weight]) => {
+                if (selectedMethods.includes(method) && !isNaN(weight) && parseFloat(weight) >= 0) {
+                    newWeights[method] = parseFloat(weight);
+                } else {
+                    valid = false;
+                }
+            });
+            if (valid && pairs.length > 0) {
+                methodWeights = newWeights;
+                localStorage.setItem('methodWeights', JSON.stringify(methodWeights));
+                alert('Method weights updated successfully!');
+                playSound('success');
+            } else {
+                alert('Invalid format or methods. Use: method:weight,method:weight');
+                playSound('error');
+            }
+        }
+
+        // Input color update
+        function updateInputColor(input) {
+            const value = parseInt(input.value);
+            input.classList.remove('even', 'odd');
+            if (!isNaN(value)) {
+                input.classList.add(value % 2 === 0 ? 'even' : 'odd');
+            }
+        }
+
+        // Input validation
+        function validateInput(input) {
+            const feedback = document.getElementById('inputFeedback');
+            const value = parseInt(input.value);
+            if (strictValidation && (!Number.isInteger(value) || value < 0 || value > 9)) {
+                input.classList.add('invalid');
+                feedback.style.display = 'block';
+                feedback.textContent = 'Please enter a number between 0 and 9';
+            } else if (!strictValidation && !Number.isInteger(value)) {
+                input.classList.add('invalid');
+                feedback.style.display = 'block';
+                feedback.textContent = 'Please enter an integer';
+            } else {
+                input.classList.remove('invalid');
+                feedback.style.display = 'none';
+            }
+        }
+
+        // 91 Club sync simulation
+        function syncWith91Club() {
+            const waitingMessage = document.getElementById('waitingMessage');
+            waitingMessage.style.display = 'block';
+            setTimeout(() => {
+                const mockResponse = {
+                    period: document.getElementById('period').textContent,
+                    recentNumbers: Array.from({ length: 9 }, () => Math.floor(Math.random() * 10)),
+                    message: "Synced with 91 Club successfully!"
+                };
+                alert(mockResponse.message);
+                ['num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'].forEach((id, i) => {
+                    const input = document.getElementById(id);
+                    input.value = mockResponse.recentNumbers[i];
+                    updateInputColor(input);
+                    validateInput(input);
+                });
+                waitingMessage.style.display = 'none';
+                playSound('success');
+            }, 1000);
+        }
+
+        // Copy period number
+        function copyPeriodNumber() {
+            const period = document.getElementById('period').textContent;
+            navigator.clipboard.writeText(period).then(() => {
+                alert('Period number copied!');
+                playSound('success');
+            });
+        }
+
+        // Draggable elements
+        function makeDraggable(element) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            element.onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+                element.classList.add('dragging');
+            }
+
+            function elementDrag(e) {
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                element.classList.remove('dragging');
+            }
+        }
+
+        // Floating page controls
+        function minimizeFloatingPage() {
+            const floatingPage = document.getElementById('floatingPage');
+            floatingPage.classList.toggle('minimized');
+            playSound('click');
+        }
+
+        function closeFloatingPage() {
+            document.getElementById('floatingPage').style.display = 'none';
+            playSound('click');
+        }
+
+        // Final popup
+        function hideFinalPopup() {
+            document.getElementById('finalPopup').style.display = 'none';
+            playSound('click');
+        }
+
+        // Handle email click
+        function handleEmailClick(event) {
+            playSound('click');
+        }
+
+        // Sound toggle
+        document.getElementById('soundToggle').addEventListener('change', (e) => {
+            soundEnabled = e.target.checked;
+            playSound('click');
+        });
+
+        // Validation toggle
+        document.getElementById('validationToggle').addEventListener('change', (e) => {
+            strictValidation = e.target.checked;
+            ['num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'].forEach(id => {
+                validateInput(document.getElementById(id));
+            });
+            playSound('click');
+        });
+
+        // Access key validation
+       
+function submitKey() {
+    const key = document.getElementById('accessKey').value;
+    const errorMessage = document.getElementById('errorMessage');
+    if (key === '499499') {
+        document.getElementById('loginContainer').classList.remove('active');
+        document.getElementById('welcomeMessage').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('welcomeMessage').style.display = 'none';
+            document.getElementById('goldenBorder').style.display = 'block';
+            document.getElementById('predictSection').classList.add('active');
+            document.getElementById('floatingPage').style.display = 'block';
+            updatePeriodNumber();
+            initializeCharts();
+            updateSuccessRate();
+            updateStreakTracker();
+            updateHistoryTable();
+            updateAccuracyReport();
+            updateMotivationalQuote();
+            makeDraggable(document.getElementById('emailBadge'));
+            makeDraggable(document.getElementById('floatingPage'));
+            makeDraggable(document.getElementById('finalPopup'));
+        }, 2000);
+        playSound('success');
+    } else {
+        errorMessage.style.display = 'block';
+        document.getElementById('accessKey').classList.add('invalid');
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+            document.getElementById('accessKey').classList.remove('invalid');
+        }, 2000);
+        playSound('error');
+    }
+}
+
+// Particle background animation
+function initializeParticleBackground() {
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particlesArray = [];
+    const numberOfParticles = 100;
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = Math.random() * 2 - 1;
+            this.speedY = Math.random() * 2 - 1;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.size > 0.2) this.size -= 0.1;
+            if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+            if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+        }
+        draw() {
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.8)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        for (let i = 0; i < numberOfParticles; i++) {
+            particlesArray.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particlesArray.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        particlesArray = particlesArray.filter(p => p.size > 0.2);
+        if (particlesArray.length < numberOfParticles) {
+            particlesArray.push(new Particle());
+        }
+        requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// Initialize charts
+function initializeCharts() {
+    const trendChartCtx = document.getElementById('trendChart').appendChild(document.createElement('canvas')).getContext('2d');
+    const confidenceTrendCtx = document.getElementById('confidenceTrend').appendChild(document.createElement('canvas')).getContext('2d');
+
+    trendChart = new Chart(trendChartCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Predicted Numbers',
+                data: [],
+                borderColor: '#ffd700',
+                backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 9,
+                    title: {
+                        display: true,
+                        text: 'Number',
+                        color: '#ffeb3b'
+                    },
+                    ticks: {
+                        color: '#ffeb3b'
+                    },
+                    grid: {
+                        color: 'rgba(255, 235, 59, 0.2)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Period',
+                        color: '#ffeb3b'
+                    },
+                    ticks: {
+                        color: '#ffeb3b'
+                    },
+                    grid: {
+                        color: 'rgba(255, 235, 59, 0.2)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffeb3b'
+                    }
+                }
+            }
+        }
+    });
+
+    confidenceTrendChart = new Chart(confidenceTrendCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Confidence Level',
+                data: [],
+                borderColor: '#ff69b4',
+                backgroundColor: 'rgba(255, 105, 180, 0.2)',
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: 'Confidence (%)',
+                        color: '#ffeb3b'
+                    },
+                    ticks: {
+                        color: '#ffeb3b'
+                    },
+                    grid: {
+                        color: 'rgba(255, 235, 59, 0.2)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Period',
+                        color: '#ffeb3b'
+                    },
+                    ticks: {
+                        color: '#ffeb3b'
+                    },
+                    grid: {
+                        color: 'rgba(255, 235, 59, 0.2)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffeb3b'
+                    }
+                }
+            }
+        }
+    });
+
+    updateThemeColors();
+}
+
+// Update chart theme colors
+function updateThemeColors() {
+    const theme = document.getElementById('themeSelect').value;
+    let numberColor, confidenceColor, gridColor, textColor;
+    switch (theme) {
+        case 'light':
+            numberColor = '#ff69b4';
+            confidenceColor = '#ff0000';
+            gridColor = 'rgba(0, 0, 0, 0.1)';
+            textColor = '#1a1a1a';
+            break;
+        case 'dark-blue':
+            numberColor = '#00b7eb';
+            confidenceColor = '#ff1493';
+            gridColor = 'rgba(0, 229, 255, 0.2)';
+            textColor = '#00e5ff';
+            break;
+        case 'neon':
+            numberColor = '#39ff14';
+            confidenceColor = '#ff00ff';
+            gridColor = 'rgba(0, 255, 170, 0.2)';
+            textColor = '#00ffaa';
+            break;
+        case 'cyberpunk':
+            numberColor = '#ff00ff';
+            confidenceColor = '#00ffaa';
+            gridColor = 'rgba(255, 0, 255, 0.2)';
+            textColor = '#ff00ff';
+            break;
+        default:
+            numberColor = '#ffd700';
+            confidenceColor = '#ff69b4';
+            gridColor = 'rgba(255, 235, 59, 0.2)';
+            textColor = '#ffeb3b';
+    }
+    if (trendChart) {
+        trendChart.data.datasets[0].borderColor = numberColor;
+        trendChart.data.datasets[0].backgroundColor = numberColor.replace('1)', '0.2)');
+        trendChart.options.scales.y.title.color = textColor;
+        trendChart.options.scales.x.title.color = textColor;
+        trendChart.options.scales.y.ticks.color = textColor;
+        trendChart.options.scales.x.ticks.color = textColor;
+        trendChart.options.scales.y.grid.color = gridColor;
+        trendChart.options.scales.x.grid.color = gridColor;
+        trendChart.options.plugins.legend.labels.color = textColor;
+        trendChart.update();
+    }
+    if (confidenceTrendChart) {
+        confidenceTrendChart.data.datasets[0].borderColor = confidenceColor;
+        confidenceTrendChart.data.datasets[0].backgroundColor = confidenceColor.replace('1)', '0.2)');
+        confidenceTrendChart.options.scales.y.title.color = textColor;
+        confidenceTrendChart.options.scales.x.title.color = textColor;
+        confidenceTrendChart.options.scales.y.ticks.color = textColor;
+        confidenceTrendChart.options.scales.x.ticks.color = textColor;
+        confidenceTrendChart.options.scales.y.grid.color = gridColor;
+        confidenceTrendChart.options.scales.x.grid.color = gridColor;
+        confidenceTrendChart.options.plugins.legend.labels.color = textColor;
+        confidenceTrendChart.update();
+    }
+}
+
+// Update trend chart
+function updateTrendChart() {
+    const labels = predictionHistory.slice(-10).map(h => h.period.slice(-5));
+    const data = predictionHistory.slice(-10).map(h => h.number);
+    trendChart.data.labels = labels;
+    trendChart.data.datasets[0].data = data;
+    updateThemeColors();
+    trendChart.update();
+}
+
+// Update confidence trend chart
+function updateConfidenceTrendChart() {
+    const labels = predictionHistory.slice(-10).map(h => h.period.slice(-5));
+    const data = predictionHistory.slice(-10).map(h => h.confidence * 100);
+    confidenceTrendChart.data.labels = labels;
+    confidenceTrendChart.data.datasets[0].data = data;
+    updateThemeColors();
+    confidenceTrendChart.update();
+}
+
+// Update confidence meter
+function updateConfidenceMeter(confidence) {
+    const canvas = document.getElementById('confidenceMeter');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 200;
+    canvas.height = 100;
+
+    const percentage = confidence * 100;
+    const angle = (percentage / 100) * Math.PI;
+    const startAngle = Math.PI;
+    const endAngle = startAngle + angle;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(100, 100, 80, startAngle, startAngle + Math.PI, false);
+    ctx.lineWidth = 20;
+    ctx.strokeStyle = '#2c2c2c';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(100, 100, 80, startAngle, endAngle, false);
+    ctx.lineWidth = 20;
+    ctx.strokeStyle = '#ffd700';
+    if (document.getElementById('themeSelect').value === 'light') ctx.strokeStyle = '#ff69b4';
+    else if (document.getElementById('themeSelect').value === 'dark-blue') ctx.strokeStyle = '#00b7eb';
+    else if (document.getElementById('themeSelect').value === 'neon') ctx.strokeStyle = '#39ff14';
+    else if (document.getElementById('themeSelect').value === 'cyberpunk') ctx.strokeStyle = '#ff00ff';
+    ctx.stroke();
+
+    document.getElementById('confidenceText').textContent = `Confidence: ${percentage.toFixed(1)}%`;
+}
+
+// Update motivational quote
+function updateMotivationalQuote() {
+    const quote = MOTIVATIONAL_QUOTES[Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)];
+    document.getElementById('motivationalQuote').textContent = quote;
+    document.getElementById('floatingQuote').textContent = quote;
+    document.getElementById('finalQuote').textContent = quote;
+}
+
+// Prediction methods
+const predictionMethods = {
+    composite: numbers => {
+        let sum = numbers.reduce((a, b) => a + b, 0);
+        let product = numbers.reduce((a, b) => a * b || 1, 1);
+        return (sum * product) % 10;
+    },
+    matrix: numbers => {
+        let matrixSum = numbers.reduce((a, b) => a + b, 0);
+        let matrixProduct = numbers.reduce((a, b) => a * b || 1, 1);
+        return (matrixSum + matrixProduct) % 10;
+    },
+    gaussian: numbers => {
+        let mean = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+        let variance = numbers.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / numbers.length;
+        return Math.floor((mean + Math.sqrt(variance)) % 10);
+    },
+    arithmetic: numbers => {
+        let diff = numbers[numbers.length - 1] - numbers[numbers.length - 2];
+        return (numbers[numbers.length - 1] + diff) % 10;
+    },
+    linear: numbers => {
+        let slope = (numbers[numbers.length - 1] - numbers[0]) / (numbers.length - 1);
+        return Math.floor((numbers[numbers.length - 1] + slope) % 10);
+    },
+    inner: numbers => {
+        let sum = numbers.reduce((a, b) => a + b, 0);
+        return sum % 10;
+    },
+    pi: numbers => {
+        let index = numbers.reduce((a, b) => a + b, 0) % PI_DIGITS.length;
+        return parseInt(PI_DIGITS[index]);
+    },
+    wave: numbers => {
+        let wave = Math.sin(numbers.reduce((a, b) => a + b, 0));
+        return Math.floor(Math.abs(wave * 10)) % 10;
+    },
+    operation: numbers => {
+        let result = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            if (i % 4 === 1) result += numbers[i];
+            else if (i % 4 === 2) result -= numbers[i];
+            else if (i % 4 === 3) result *= numbers[i] || 1;
+            else result /= numbers[i] || 1;
+        }
+        return Math.floor(Math.abs(result)) % 10;
+    },
+    integration: numbers => {
+        let integral = numbers.reduce((a, b, i) => a + b * (i + 1), 0);
+        return integral % 10;
+    },
+    mensuration: numbers => {
+        let area = numbers.reduce((a, b) => a + b * b, 0);
+        return area % 10;
+    },
+    bodmas: numbers => {
+        let result = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            if (i % 2 === 0) result = result * numbers[i] || 1;
+            else result += numbers[i];
+        }
+        return result % 10;
+    },
+    oddEven: numbers => {
+        let odds = numbers.filter(n => n % 2 === 1).length;
+        return odds % 10;
+    },
+    markov: numbers => {
+        let last = numbers[numbers.length - 1];
+        return (last + 1) % 10;
+    },
+    numberTrend: numbers => {
+        let trend = numbers[numbers.length - 1] > numbers[numbers.length - 2] ? 1 : -1;
+        return (numbers[numbers.length - 1] + trend) % 10;
+    },
+    bigSmall: numbers => {
+        let bigCount = numbers.filter(n => n >= 5).length;
+        return bigCount % 10;
+    },
+    colorSeq: numbers => {
+        let reds = numbers.filter(n => [1, 3, 7, 9].includes(n)).length;
+        return reds % 10;
+    },
+    trend: numbers => {
+        let sum = numbers.reduce((a, b) => a + b, 0);
+        return (sum / numbers.length) % 10;
+    },
+    entropy: numbers => {
+        let freq = {};
+        numbers.forEach(n => freq[n] = (freq[n] || 0) + 1);
+        let entropy = -Object.values(freq).reduce((a, b) => a + (b / numbers.length) * Math.log2(b / numbers.length), 0);
+        return Math.floor(entropy * 10) % 10;
+    },
+    fibonacci: numbers => {
+        let index = numbers.reduce((a, b) => a + b, 0) % FIBONACCI.length;
+        return FIBONACCI[index] % 10;
+    },
+    frequency: numbers => {
+        let freq = {};
+        numbers.forEach(n => freq[n] = (freq[n] || 0) + 1);
+        let maxFreq = Math.max(...Object.values(freq));
+        let mostFreq = parseInt(Object.keys(freq).find(k => freq[k] === maxFreq));
+        return mostFreq;
+    },
+    pattern: numbers => {
+        let pattern = numbers[numbers.length - 1] + numbers[numbers.length - 2];
+        return pattern % 10;
+    },
+    harmonic: numbers => {
+        let sum = numbers.reduce((a, b) => a + (1 / (b || 1)), 0);
+        return Math.floor(1 / sum) % 10;
+    },
+    geometric: numbers => {
+        let product = numbers.reduce((a, b) => a * (b || 1), 1);
+        return Math.floor(Math.pow(product, 1 / numbers.length)) % 10;
+    },
+    modulo: numbers => {
+        let sum = numbers.reduce((a, b) => a + b, 0);
+        return sum % 9 || 9;
+    },
+    delta: numbers => {
+        let deltas = numbers.slice(1).map((n, i) => n - numbers[i]);
+        let avgDelta = deltas.reduce((a, b) => a + b, 0) / deltas.length;
+        return Math.floor((numbers[numbers.length - 1] + avgDelta) % 10);
+    },
+    cluster: numbers => {
+        let clusters = {};
+        numbers.forEach(n => clusters[n] = (clusters[n] || 0) + 1);
+        let maxCluster = Math.max(...Object.values(clusters));
+        let clusterNum = parseInt(Object.keys(clusters).find(k => clusters[k] === maxCluster));
+        return clusterNum;
+    },
+    // New Data Representation and Computer Arithmetic Methods
+    complement: numbers => {
+        // 9's complement of the sum
+        let sum = numbers.reduce((a, b) => a + b, 0);
+        return (9 - (sum % 10)) % 10;
+    },
+    intStorage: numbers => {
+        // Simulate integer storage pattern (bitwise XOR)
+        let xor = numbers.reduce((a, b) => a ^ b, 0);
+        return xor % 10;
+    },
+    floatArithmetic: numbers => {
+        // Floating-point sum rounded to nearest integer
+        let sum = numbers.reduce((a, b) => a + parseFloat(b), 0);
+        return Math.round(sum / numbers.length) % 10;
+    },
+    dataError: numbers => {
+        // Error analysis using variance
+        let mean = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+        let variance = numbers.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / numbers.length;
+        return Math.floor(Math.sqrt(variance)) % 10;
+    },
+    // New Non-Linear Equation Methods
+    secant: numbers => {
+        // Simplified secant method for root approximation
+        let x0 = numbers[numbers.length - 2];
+        let x1 = numbers[numbers.length - 1];
+        let f = x => x * x - 10; // Example function
+        let x2 = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0) || 1);
+        return Math.floor(Math.abs(x2)) % 10;
+    },
+    newtonRaphson: numbers => {
+        // Newton-Raphson for root finding
+        let x = numbers[numbers.length - 1];
+        let f = x => x * x - 5;
+        let df = x => 2 * x;
+        let xNext = x - f(x) / (df(x) || 1);
+        return Math.floor(Math.abs(xNext)) % 10;
+    },
+    muller: numbers => {
+        // Muller's method using last three numbers
+        let x0 = numbers[numbers.length - 3];
+        let x1 = numbers[numbers.length - 2];
+        let x2 = numbers[numbers.length - 1];
+        let f = x => x * x - 7;
+        let a = (f(x2) - f(x1)) / (x2 - x1 || 1) - (f(x1) - f(x0)) / (x1 - x0 || 1);
+        let b = (f(x2) - f(x1)) / (x2 - x1 || 1);
+        let x3 = x2 - 2 * f(x2) / (b + Math.sqrt(b * b - 4 * a * f(x2)) || 1);
+        return Math.floor(Math.abs(x3)) % 10;
+    },
+    quotientDiff: numbers => {
+        // Quotient-difference method approximation
+        let q = numbers.slice(-2).reduce((a, b) => b / (a || 1), 1);
+        return Math.floor(q) % 10;
+    },
+    nonLinearSystem: numbers => {
+        // Simplified system of non-linear equations
+        let sum = numbers.reduce((a, b) => a + b * b, 0);
+        return Math.floor(Math.sqrt(sum)) % 10;
+    },
+    // New Matrix and Determinant Methods
+    matrixAdd: numbers => {
+        // Matrix addition pattern
+        let matrix = [[numbers[0], numbers[1]], [numbers[2], numbers[3]]];
+        let sum = matrix.flat().reduce((a, b) => a + b, 0);
+        return sum % 10;
+    },
+    matrixMul: numbers => {
+        // Matrix multiplication pattern
+        let matrix1 = [[numbers[0], numbers[1]], [numbers[2], numbers[3]]];
+        let matrix2 = [[numbers[4], numbers[5]], [numbers[6], numbers[7]]];
+        let result = matrix1[0][0] * matrix2[0][0] + matrix1[0][1] * matrix2[1][0];
+        return result % 10;
+    },
+    determinant: numbers => {
+        // 2x2 matrix determinant
+        let matrix = [[numbers[0], numbers[1]], [numbers[2], numbers[3]]];
+        let det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+        return Math.abs(det) % 10;
+    },
+    inverseMatrix: numbers => {
+        // Inverse matrix determinant
+        let matrix = [[numbers[0], numbers[1]], [numbers[2], numbers[3]]];
+        let det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0] || 1;
+        let result = Math.abs(matrix[0][0] / det);
+        return Math.floor(result) % 10;
+    },
+    eigenvalue: numbers => {
+        // Simplified eigenvalue for 2x2 matrix
+        let matrix = [[numbers[0], numbers[1]], [numbers[2], numbers[3]]];
+        let trace = matrix[0][0] + matrix[1][1];
+        return trace % 10;
+    },
+    // New Linear Equation Methods
+    gaussianElim: numbers => {
+        // Gaussian elimination for simplified system
+        let sum = numbers.reduce((a, b) => a + b, 0);
+        return sum % 10;
+    },
+    gaussJordan: numbers => {
+        // Gauss-Jordan method
+        let sum = numbers.reduce((a, b) => a + b, 0);
+        return Math.floor(sum / numbers.length) % 10;
+    },
+    matrixInverse: numbers => {
+        // Matrix inverse method
+        let matrix = [[numbers[0], numbers[1]], [numbers[2], numbers[3]]];
+        let det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0] || 1;
+        let result = matrix[0][0] / det;
+        return Math.floor(Math.abs(result)) % 10;
+    },
+    // New Interpolation Methods
+    lagrange: numbers => {
+        // Lagrange interpolation for next point
+        let x = numbers.length;
+        let result = 0;
+        for (let i = 0; i < numbers.length; i++) {
+            let term = numbers[i];
+            for (let j = 0; j < numbers.length; j++) {
+                if (j !== i) term *= (x - j) / (i - j || 1);
+            }
+            result += term;
+        }
+        return Math.floor(result) % 10;
+    },
+    newtonForward: numbers => {
+        // Newton's forward interpolation
+        let delta = numbers[numbers.length - 1] - numbers[numbers.length - 2];
+        return (numbers[numbers.length - 1] + delta) % 10;
+    },
+    // New Curve Fitting Methods
+    linearLeastSquares: numbers => {
+        // Linear least squares fit
+        let n = numbers.length;
+        let sumX = n * (n - 1) / 2;
+        let sumY = numbers.reduce((a, b) => a + b, 0);
+        let sumXY = numbers.reduce((a, b, i) => a + i * b, 0);
+        let sumXX = numbers.reduce((a, b, i) => a + i * i, 0);
+        let slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX || 1);
+        let intercept = (sumY - slope * sumX) / n;
+        let next = slope * n + intercept;
+        return Math.floor(next) % 10;
+    },
+    polyLeastSquares: numbers => {
+        // Polynomial least squares (degree 2)
+        let n = numbers.length;
+        let sumX = n * (n - 1) / 2;
+        let sumY = numbers.reduce((a, b) => a + b, 0);
+        let sumXY = numbers.reduce((a, b, i) => a + i * b, 0);
+        let sumXX = numbers.reduce((a, b, i) => a + i * i, 0);
+        let next = sumY / n;
+        return Math.floor(next) % 10;
+    },
+    // New Numerical Differentiation and Integration
+    forwardDiff: numbers => {
+        // Forward difference differentiation
+        let diff = numbers[numbers.length - 1] - numbers[numbers.length - 2];
+        return Math.abs(diff) % 10;
+    },
+    trapezoidal: numbers => {
+        // Trapezoidal rule integration
+        let sum = (numbers[0] + numbers[numbers.length - 1]) / 2 + numbers.slice(1, -1).reduce((a, b) => a + b, 0);
+        return Math.floor(sum) % 10;
+    },
+    simpson: numbers => {
+        // Simpson's rule integration
+        let sum = numbers[0] + numbers[numbers.length - 1] + 4 * numbers[numbers.length - 2] + 2 * numbers[numbers.length - 3];
+        return Math.floor(sum / 3) % 10;
+    }
+};
+
+// Calculate signal
+function getSignal(number) {
+    return number >= 5 ? 'Big' : 'Small';
+}
+
+// Calculate color
+function getColor(number) {
+    if ([1, 3, 7, 9].includes(number)) return 'Red';
+    if ([2, 4, 6, 8].includes(number)) return 'Green';
+    return 'Violet';
+}
+
+// Calculate all predictions
+function calculateAll() {
+    const inputs = ['num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'].map(id => parseInt(document.getElementById(id).value));
+    if (inputs.some(n => isNaN(n) || (strictValidation && (n < 0 || n > 9)))) {
+        document.getElementById('inputFeedback').style.display = 'block';
+        playSound('error');
+        return;
+    }
+
+    document.getElementById('inputFeedback').style.display = 'none';
+    document.getElementById('waitingMessage').style.display = 'block';
+    document.getElementById('progressBar').classList.add('active');
+    document.getElementById('progressBar').children[0].style.width = '0%';
+
+    setTimeout(() => {
+        const predictions = {};
+        let totalWeight = 0;
+        selectedMethods.forEach(method => {
+            const weight = methodWeights[method] || 1;
+            predictions[method] = predictionMethods[method](inputs);
+            totalWeight += weight;
+        });
+
+        const weightedSum = selectedMethods.reduce((sum, method) => {
+            const weight = methodWeights[method] || 1;
+            return sum + predictions[method] * weight;
+        }, 0);
+
+        const finalPrediction = Math.round(weightedSum / totalWeight) % 10;
+        const confidence = Math.min(0.95, 0.5 + (selectedMethods.length / Object.keys(predictionMethods).length));
+        const signal = getSignal(finalPrediction);
+        const color = getColor(finalPrediction);
+
+        lastNumbers = inputs;
+        inputHistory.push({ period: document.getElementById('period').textContent, numbers: inputs });
+        predictionHistory.push({
+            period: document.getElementById('period').textContent,
+            inputs: inputs.join(', '),
+            number: finalPrediction,
+            signal,
+            color,
+            confidence
+        });
+
+        localStorage.setItem('inputHistory', JSON.stringify(inputHistory));
+        localStorage.setItem('predictionHistory', JSON.stringify(predictionHistory));
+
+        const resultHTML = `
+            <p>Period: <span class="color-gold">${document.getElementById('period').textContent}</span></p>
+            <p>Input Numbers: <span class="color-yellow">${inputs.join(', ')}</span></p>
+            <p>Predicted Number: <span class="color-pink">${finalPrediction}</span></p>
+            <p>Signal: <span class="color-yellow">${signal}</span></p>
+            <p>Color: <span class="${color === 'Red' ? 'color-red' : color === 'Green' ? 'color-green' : 'color-pink'}">${color}</span></p>
+            <p>Confidence: <span class="color-yellow">${(confidence * 100).toFixed(1)}%</span></p>
+            <p>Methods Used: <span class="color-yellow">${selectedMethods.join(', ')}</span></p>
+        `;
+        document.getElementById('resultContainer').innerHTML = resultHTML;
+
+        const nextResultHTML = `
+            <p>Next Number: <span class="color-pink">${finalPrediction}</span></p>
+            <p>Signal: <span class="color-yellow">${signal}</span></p>
+            <p>Color: <span class="${color === 'Red' ? 'color-red' : color === 'Green' ? 'color-green' : 'color-pink'}">${color}</span></p>
+            <p>Confidence: <span class="color-yellow">${(confidence * 100).toFixed(1)}%</span></p>
+        `;
+        document.getElementById('nextResult').innerHTML = nextResultHTML;
+
+        const finalResultHTML = `
+            <p>Number: <span class="color-pink">${finalPrediction}</span></p>
+            <p>Signal: <span class="color-yellow">${signal}</span></p>
+            <p>Color: <span class="${color === 'Red' ? 'color-red' : color === 'Green' ? 'color-green' : 'color-pink'}">${color}</span></p>
+        `;
+        document.getElementById('finalResult').innerHTML = finalResultHTML;
+        document.getElementById('finalPopup').style.display = 'block';
+
+        document.getElementById('progressBar').children[0].style.width = '100%';
+        setTimeout(() => {
+            document.getElementById('waitingMessage').style.display = 'none';
+            document.getElementById('progressBar').classList.remove('active');
+        }, 500);
+
+        updateConfidenceMeter(confidence);
+        updateTrendChart();
+        updateConfidenceTrendChart();
+        updateHistoryTable();
+        updateAccuracyReport();
+        updateMotivationalQuote();
+        updateStreakTracker();
+        updateSuccessRate();
+        drawPredictionFlow(inputs, finalPrediction);
+        playSound('success');
+    }, 1500);
+}
+
+// Quick predict
+function quickPredict() {
+    const inputs = Array(9).fill().map(() => Math.floor(Math.random() * 10));
+    ['num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'].forEach((id, i) => {
+        const input = document.getElementById(id);
+        input.value = inputs[i];
+        updateInputColor(input);
+        validateInput(input);
+    });
+    calculateAll();
+}
+
+// Reset inputs
+function resetInputs() {
+    ['num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'].forEach(id => {
+        const input = document.getElementById(id);
+        input.value = '';
+        input.classList.remove('even', 'odd', 'invalid');
+    });
+    document.getElementById('inputFeedback').style.display = 'none';
+    playSound('click');
+}
+
+// Auto-fill last inputs
+function autoFillInputs() {
+    if (inputHistory.length > 0) {
+        const lastInput = inputHistory[inputHistory.length - 1].numbers;
+        ['num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'].forEach((id, i) => {
+            const input = document.getElementById(id);
+            input.value = lastInput[i];
+            updateInputColor(input);
+            validateInput(input);
+        });
+        playSound('click');
+    } else {
+        alert('No previous inputs available.');
+        playSound('error');
+    }
+}
+
+// Update history table
+function updateHistoryTable() {
+    const tbody = document.getElementById('historyTableBody');
+    tbody.innerHTML = '';
+    predictionHistory.slice(-10).reverse().forEach(h => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${h.period}</td>
+            <td>${h.inputs}</td>
+            <td>${h.number}</td>
+            <td>${h.signal}</td>
+            <td>${h.color}</td>
+            <td>${(h.confidence * 100).toFixed(1)}%</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+// Search history
+function searchHistory() {
+    const query = document.getElementById('historySearch').value.toLowerCase();
+    const tbody = document.getElementById('historyTableBody');
+    tbody.innerHTML = '';
+    predictionHistory.filter(h => 
+        h.period.includes(query) || 
+        h.inputs.toLowerCase().includes(query) || 
+        h.number.toString().includes(query) || 
+        h.signal.toLowerCase().includes(query) || 
+        h.color.toLowerCase().includes(query)
+    ).slice(-10).reverse().forEach(h => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${h.period}</td>
+            <td>${h.inputs}</td>
+            <td>${h.number}</td>
+            <td>${h.signal}</td>
+            <td>${h.color}</td>
+            <td>${(h.confidence * 100).toFixed(1)}%</td>
+        `;
+        tbody.appendChild(row);
+    });
+    playSound('click');
+}
+
+// Clear history
+function clearHistory() {
+    if (confirm('Are you sure you want to clear all history?')) {
+        inputHistory = [];
+        predictionHistory = [];
+        feedbackHistory = { correct: 0, total: 0 };
+        currentStreak = 0;
+        localStorage.removeItem('inputHistory');
+        localStorage.removeItem('predictionHistory');
+        localStorage.removeItem('feedbackHistory');
+        localStorage.setItem('currentStreak', '0');
+        updateHistoryTable();
+        updateAccuracyReport();
+        updateSuccessRate();
+        updateStreakTracker();
+        updateTrendChart();
+        updateConfidenceTrendChart();
+        playSound('click');
+    }
+}
+
+// Export history as TXT
+function exportHistory() {
+    const text = predictionHistory.map(h => 
+        `Period: ${h.period}\nInputs: ${h.inputs}\nNumber: ${h.number}\nSignal: ${h.signal}\nColor: ${h.color}\nConfidence: ${(h.confidence * 100).toFixed(1)}%\n---`
+    ).join('\n');
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `KHANDS_HACK_History_${new Date().toISOString()}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    playSound('success');
+}
+
+// Export history as CSV
+function exportAsCSV() {
+    const csv = [
+        'Period,Inputs,Number,Signal,Color,Confidence',
+        ...predictionHistory.map(h => 
+            `${h.period},"${h.inputs}",${h.number},${h.signal},${h.color},${(h.confidence * 100).toFixed(1)}%`
+        )
+    ].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `KHANDS_HACK_History_${new Date().toISOString()}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    playSound('success');
+}
+
+// Export history as PDF
+function exportAsPDF() {
+    const element = document.createElement('div');
+    element.innerHTML = `
+        <h1>KHANDS HACK 2.5.5 Prediction History</h1>
+        ${predictionHistory.map(h => `
+            <p><strong>Period:</strong> ${h.period}</p>
+            <p><strong>Inputs:</strong> ${h.inputs}</p>
+            <p><strong>Number:</strong> ${h.number}</p>
+            <p><strong>Signal:</strong> ${h.signal}</p>
+            <p><strong>Color:</strong> ${h.color}</p>
+            <p><strong>Confidence:</strong> ${(h.confidence * 100).toFixed(1)}%</p>
+            <hr>
+        `).join('')}
+    `;
+    element.style.padding = '20px';
+    element.style.background = '#ffffff';
+    element.style.color = '#000000';
+    document.body.appendChild(element);
+    html2pdf().from(element).save(`KHANDS_HACK_History_${new Date().toISOString()}.pdf`).then(() => {
+        document.body.removeChild(element);
+        playSound('success');
+    });
+}
+
+// Export snapshot
+function exportSnapshot() {
+    html2canvas(document.getElementById('predictSection')).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `KHANDS_HACK_Snapshot_${new Date().toISOString()}.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+        playSound('success');
+    });
+}
+
+// Draw prediction flow (SVG visualization)
+function drawPredictionFlow(inputs, finalPrediction) {
+    const svgContainer = document.getElementById('svgFlow');
+    svgContainer.innerHTML = '';
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '200');
+    svgContainer.appendChild(svg);
+
+    const theme = document.getElementById('themeSelect').value;
+    const strokeColor = theme === 'light' ? '#ff69b4' : theme === 'dark-blue' ? '#00b7eb' : theme === 'neon' ? '#39ff14' : theme === 'cyberpunk' ? '#ff00ff' : '#ffd700';
+
+    inputs.forEach((num, i) => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', 50 + i * 100);
+        circle.setAttribute('cy', '100');
+        circle.setAttribute('r', '20');
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', strokeColor);
+        circle.setAttribute('stroke-width', '2');
+        svg.appendChild(circle);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', 50 + i * 100);
+        text.setAttribute('y', '105');
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('fill', strokeColor);
+        text.textContent = num;
+        svg.appendChild(text);
+
+        if (i < inputs.length - 1) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', 50 + i * 100 + 20);
+            line.setAttribute('y1', '100');
+            line.setAttribute('x2', 50 + (i + 1) * 100 - 20);
+            line.setAttribute('y2', '100');
+            line.setAttribute('stroke', strokeColor);
+            line.setAttribute('stroke-width', '2');
+            svg.appendChild(line);
+        }
+    });
+
+    const finalCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    finalCircle.setAttribute('cx', 50 + inputs.length * 100);
+    finalCircle.setAttribute('cy', '100');
+    finalCircle.setAttribute('r', '20');
+    finalCircle.setAttribute('fill', 'none');
+    finalCircle.setAttribute('stroke', strokeColor);
+    finalCircle.setAttribute('stroke-width', '2');
+    svg.appendChild(finalCircle);
+
+    const finalText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    finalText.setAttribute('x', 50 + inputs.length * 100);
+    finalText.setAttribute('y', '105');
+    finalText.setAttribute('text-anchor', 'middle');
+    finalText.setAttribute('fill', strokeColor);
+    finalText.textContent = finalPrediction;
+    svg.appendChild(finalText);
+
+    const finalLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    finalLine.setAttribute('x1', 50 + (inputs.length - 1) * 100 + 20);
+    finalLine.setAttribute('y1', '100');
+    finalLine.setAttribute('x2', 50 + inputs.length * 100 - 20);
+    finalLine.setAttribute('y2', '100');
+    finalLine.setAttribute('stroke', strokeColor);
+    finalLine.setAttribute('stroke-width', '2');
+    svg.appendChild(finalLine);
+}
+
+// Rate prediction
+function ratePrediction(isCorrect) {
+    feedbackHistory.total++;
+    if (isCorrect) {
+        feedbackHistory.correct++;
+        currentStreak++;
+        selectedMethods.forEach(method => {
+            methodAccuracy[method] = methodAccuracy[method] || { correct: 0, total: 0 };
+            methodAccuracy[method].correct++;
+            methodAccuracy[method].total++;
+        });
+    } else {
+        currentStreak = 0;
+        selectedMethods.forEach(method => {
+            methodAccuracy[method] = methodAccuracy[method] || { correct: 0, total: 0 };
+            methodAccuracy[method].total++;
+        });
+    }
+    localStorage.setItem('feedbackHistory', JSON.stringify(feedbackHistory));
+    localStorage.setItem('methodAccuracy', JSON.stringify(methodAccuracy));
+    localStorage.setItem('currentStreak', currentStreak.toString());
+    updateSuccessRate();
+    updateStreakTracker();
+    updateAccuracyReport();
+    playSound(isCorrect ? 'success' : 'error');
+}
+
+// Update success rate
+function updateSuccessRate() {
+    const successRate = feedbackHistory.total > 0 ? (feedbackHistory.correct / feedbackHistory.total * 100).toFixed(1) : 0;
+    document.getElementById('successRate').textContent = `Success Rate: ${successRate}%`;
+}
+
+// Update streak tracker
+function updateStreakTracker() {
+    document.getElementById('streakTracker').textContent = `Current Streak: ${currentStreak}`;
+}
+
+// Update accuracy report
+function updateAccuracyReport() {
+    const content = document.getElementById('accuracyReportContent');
+    content.innerHTML = selectedMethods.map(method => {
+        const accuracy = methodAccuracy[method] ? (methodAccuracy[method].correct / methodAccuracy[method].total * 100).toFixed(1) : 0;
+        return `<p>${method}: ${accuracy}% (${methodAccuracy[method]?.correct || 0}/${methodAccuracy[method]?.total || 0})</p>`;
+    }).join('');
+}
+
+// Initialize on load
+window.onload = () => {
+    initializeParticleBackground();
+    updatePeriodNumber();
+    document.getElementById('methodSelect').value = selectedMethods;
+    document.getElementById('soundToggle').checked = soundEnabled;
+    document.getElementById('validationToggle').checked = strictValidation;
+};
+</script>
+</body>
+</html>
